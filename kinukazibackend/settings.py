@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ow6899g_x0kzigo0rl0wtv_(+z1u3^r(+*@l#=%py35yt=p*#)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -38,12 +38,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts',
+    'industry',
+    'product',
+
+    # user auth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'djoser',
     'rest_framework',
     'rest_framework.authtoken',
+    'django_filters',
     # editor
     'django_quill',
 ]
