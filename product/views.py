@@ -9,7 +9,7 @@ from industry.models import ProuctIndusty,ProductSemiIndusry
 
 
 # Create your views here.
-class ProductListview(generics.ListCreateAPIView):
+class MachineListview(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     filter_backends = [DjangoFilterBackend,filters.OrderingFilter,filters.SearchFilter]
@@ -17,7 +17,7 @@ class ProductListview(generics.ListCreateAPIView):
     ordering_fields = ['price','created_at']
     search_fields = ['productName', 'descripton']
 
-class ProductDetailView(APIView):
+class MachineDetailView(APIView):
     def get_object(self, category_slug, product_slug):
         try:
             return Product.objects.filter(category__slug=category_slug).get(slug=product_slug)
@@ -30,7 +30,7 @@ class ProductDetailView(APIView):
         return Response(serializer.data)
 
 
-class GetProductsByCategory(APIView):
+class GetMachinesByCategory(APIView):
     def get_object(self, category_slug):
         try:
             return ProuctIndusty.objects.filter(category__slug=category_slug)

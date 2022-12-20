@@ -8,17 +8,13 @@ from django_resized import ResizedImageField
 
 # Create your models here.
 class Accounts(AbstractUser):
-    TypeOfUser = [
-        ('Normal Account','Normal Account'),
-        ('Business Account','Business Account'),
-    ]
-
     
-
-
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
     phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True) # Validators should be a list
-    avatar = ResizedImageField(_("Avatar"),size=[300, 300], upload_to='user/avatars',crop=['middle', 'center'],quality=90)
+    avatar = ResizedImageField(_("Avatar"),size=[300, 300], upload_to='user/avatars',crop=['middle', 'center'],quality=90,blank=True,null=True)
+    is_bussness = models.BooleanField(_("Business Account"),default=False)
+    is_user = models.BooleanField(_("Normal Account"),default=False)
+    is_verified_account = models.BooleanField(_("verified users"),default=False)
 
 class Business(models.Model):
     REGION = [
@@ -64,3 +60,6 @@ class Business(models.Model):
     phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True)
     logo = ResizedImageField(_("Company Logo"),size=[300, 300], upload_to='user/avatars',crop=['middle', 'center'],quality=90)
 
+
+class Talent(models.Model):
+    pass

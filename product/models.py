@@ -45,7 +45,7 @@ class ProductImage(models.Model):
 
     def get_images(self):
         if self.images:
-            return 'https://api.asha-world.com' + self.images.url
+            return '' + self.images.url
         return ''
 
 class ProductReview(models.Model):
